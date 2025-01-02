@@ -88,7 +88,7 @@ const RawTitleBar: React.FC<TitleBarProps> = function ({ settingsOpen, setSettin
 	return (
 		<div className={classes.root}>
 			<span className={classes.title} style={{ marginLeft: 10 }}>
-				BetterCrewLink-沫夏悠轩{appVersion}
+				BetterCrewLink-国内版{appVersion}
 			</span>
 			<IconButton
 				className={classes.button}
