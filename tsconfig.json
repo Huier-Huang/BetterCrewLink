@@ -1,12 +1,38 @@
 {
-	"extends": "./node_modules/electron-webpack/tsconfig-base.json",
 	"compilerOptions": {
-		"jsx": "react",
+		"target": "ESNext",
+		"useDefineForClassFields": true,
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"ESNext"
+		],
+		"allowJs": false,
 		"skipLibCheck": true,
+		"esModuleInterop": false,
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"module": "ESNext",
+		"moduleResolution": "Node",
 		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"jsx": "react-jsx",
+		"baseUrl": "./",
+		"paths": {
+			"@/*": [
+				"src/*"
+			]
+		},
 	},
-	"exclude": [
-		"./node_modules/react-i18next/*"
+	"include": [
+		"src",
+		"electron"
+	],
+	"references": [
+		{
+			"path": "./tsconfig.node.json"
+		}
 	]
-
-  }
+}

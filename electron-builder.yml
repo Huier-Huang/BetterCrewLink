@@ -1,14 +1,12 @@
-appId: net.ottomated.crewlink.beta
-productName: Better-CrewLink
-copyright: Copyright © 2021 OhMyGuus
+appId: luckey.crewlink.next
+productName: Next-CrewLink
+copyright: Copyright © 2025 TianMengLuckey
+asar: true
 directories:
-  output: dist
-  buildResources: resources
+  output: dist/electron
+
 files:
-  - from: .
-    filter:
-      - package.json
-      - app
+  - from: dist/vite
 
 win:
   publish:
