@@ -8,6 +8,13 @@
 		"lint": "eslint src",
 		"dev": "vite",
 		"build": "tsc && vite build && electron-builder",
+		"dist:x64": "tsc && vite build && electron-builder --x64",
+		"dist:ia32": "tsc && vite build && electron-builder --ia32",
+		"dist:arm64": "tsc && vite build && electron-builder --arm64",
+		"dist:all": "tsc && vite build && electron-builder --x64 --ia32 --arm64",
+		"dist:win": "tsc && vite build && electron-builder --win",
+		"dist:mac": "tsc && vite build && electron-builder --mac",
+		"dist:linux": "tsc && vite build && electron-builder --linux",
 		"preview": "vite preview",
 		"pretest": "vite build --mode=test",
 		"test": "vitest run"
@@ -53,7 +60,7 @@
 		"@types/deep-equal": "^1.0.1",
 		"@types/i18next": "^12.1.0",
 		"@types/js-yaml": "^4.0.9",
-		"@types/node": "22",
+		"@types/node": "20.17.16",
 		"@types/node-fetch": "3.0.2",
 		"@types/pretty-bytes": "^5.1.0",
 		"@types/react": "^19.0.8",
@@ -65,7 +72,7 @@
 		"@typescript-eslint/parser": "^8.21.0",
 		"arraybuffer-loader": "^1.0.8",
 		"electron": "34.0.1",
-		"electron-builder": "25.1.8",
+		"electron-builder": "26.0.0",
 		"eslint": "^9.19.0",
 		"eslint-config-prettier": "^10.0.1",
 		"eslint-plugin-prettier": "^5.2.3",
@@ -81,5 +88,9 @@
 		"postcss": "^8.5.1",
 		"postcss-import": "^16.1.0",
 		"autoprefixer": "^10.4.20"
-	}
+	},
+	"engines": {
+		"node": ">=20.17.16"
+	},
+	"packageManager": "pnpm@9.15.2"
 }

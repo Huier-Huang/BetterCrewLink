@@ -1,0 +1,57 @@
+name: Build
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            installer: 'dist/electron/Better-CrewLink Setup*.exe'
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4.2.2
+
+      - name: Install pnpm 
+        uses: pnpm/action-setup@v4
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v4.2.0
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build App x32
+        run: pnpm dist:ia32
+
+      - name: Upload Installer x32
+        uses: actions/upload-artifact@v4.6.0
+        with:
+          name: BetterCrewLink Installer ${{ runner.os }} x32
+          path: ${{ matrix.installer }}
+          if-no-files-found: warn
+      
+      - name: Clean up
+        run: rm -rf dist/electron
+
+      - name: Build App x64
+        if: ${{ matrix.os == 'windows-latest'}}
+        run: pnpm dist:x64
+
+      - name: Upload Installer x64
+        uses: actions/upload-artifact@v4.6.0
+        with:
+          name: BetterCrewLink Installer ${{ runner.os }} x64
+          path: ${{ matrix.installer }}
+          if-no-files-found: warn
